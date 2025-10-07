@@ -1,0 +1,214 @@
+> python main.py
+============================================================
+SPOTIFY MUSIC RIGHTS ANALYZER
+============================================================
+Loading dataset from unclaimedmusicalworkrightshares.tsv...
+Processing in chunks of 100,000 rows to handle large file...
+  Processed 1,000,000 rows... (476,409 unique ISRCs indexed)
+  Processed 2,000,000 rows... (737,572 unique ISRCs indexed)
+  Processed 3,000,000 rows... (1,006,864 unique ISRCs indexed)
+  Processed 4,000,000 rows... (1,229,346 unique ISRCs indexed)
+  Processed 5,000,000 rows... (1,490,138 unique ISRCs indexed)
+  Processed 6,000,000 rows... (1,709,143 unique ISRCs indexed)
+  Processed 7,000,000 rows... (1,965,648 unique ISRCs indexed)
+  Processed 8,000,000 rows... (2,169,610 unique ISRCs indexed)
+  Processed 9,000,000 rows... (2,451,385 unique ISRCs indexed)
+  Processed 10,000,000 rows... (2,674,388 unique ISRCs indexed)
+  Processed 11,000,000 rows... (2,896,234 unique ISRCs indexed)
+  Processed 12,000,000 rows... (3,089,853 unique ISRCs indexed)
+  Processed 13,000,000 rows... (3,356,536 unique ISRCs indexed)
+  Processed 14,000,000 rows... (3,526,485 unique ISRCs indexed)
+  Processed 15,000,000 rows... (3,790,740 unique ISRCs indexed)
+  Processed 16,000,000 rows... (3,965,818 unique ISRCs indexed)
+  Processed 17,000,000 rows... (4,219,807 unique ISRCs indexed)
+  Processed 18,000,000 rows... (4,411,151 unique ISRCs indexed)
+  Processed 19,000,000 rows... (4,703,219 unique ISRCs indexed)
+  Processed 20,000,000 rows... (4,915,349 unique ISRCs indexed)
+  Processed 21,000,000 rows... (5,201,562 unique ISRCs indexed)
+  Processed 22,000,000 rows... (5,456,437 unique ISRCs indexed)
+  Processed 23,000,000 rows... (5,702,343 unique ISRCs indexed)
+  Processed 19,000,000 rows... (4,703,219 unique ISRCs indexed)
+  Processed 20,000,000 rows... (4,915,349 unique ISRCs indexed)
+  Processed 21,000,000 rows... (5,201,562 unique ISRCs indexed)
+  Processed 22,000,000 rows... (5,456,437 unique ISRCs indexed)
+  Processed 23,000,000 rows... (5,702,343 unique ISRCs indexed)
+  Processed 21,000,000 rows... (5,201,562 unique ISRCs indexed)
+  Processed 22,000,000 rows... (5,456,437 unique ISRCs indexed)
+  Processed 23,000,000 rows... (5,702,343 unique ISRCs indexed)
+  Processed 23,000,000 rows... (5,702,343 unique ISRCs indexed)
+  Processed 24,000,000 rows... (5,929,142 unique ISRCs indexed)
+  Processed 25,000,000 rows... (6,161,772 unique ISRCs indexed)
+  Processed 26,000,000 rows... (6,345,450 unique ISRCs indexed)
+  Processed 27,000,000 rows... (6,558,346 unique ISRCs indexed)
+  Processed 28,000,000 rows... (6,710,168 unique ISRCs indexed)
+  Processed 26,000,000 rows... (6,345,450 unique ISRCs indexed)
+  Processed 27,000,000 rows... (6,558,346 unique ISRCs indexed)
+  Processed 28,000,000 rows... (6,710,168 unique ISRCs indexed)
+  Processed 28,000,000 rows... (6,710,168 unique ISRCs indexed)
+  Processed 29,000,000 rows... (6,932,935 unique ISRCs indexed)
+  Processed 30,000,000 rows... (7,114,817 unique ISRCs indexed)
+  Processed 31,000,000 rows... (7,293,155 unique ISRCs indexed)
+  Processed 32,000,000 rows... (7,472,922 unique ISRCs indexed)
+  Processed 33,000,000 rows... (7,641,011 unique ISRCs indexed)
+  Processed 34,000,000 rows... (7,789,808 unique ISRCs indexed)
+  Processed 35,000,000 rows... (7,953,130 unique ISRCs indexed)
+  Processed 36,000,000 rows... (8,101,141 unique ISRCs indexed)
+  Processed 37,000,000 rows... (8,233,901 unique ISRCs indexed)
+  Processed 38,000,000 rows... (8,373,955 unique ISRCs indexed)
+  Processed 39,000,000 rows... (8,497,754 unique ISRCs indexed)
+  Processed 40,000,000 rows... (8,620,726 unique ISRCs indexed)
+  Processed 41,000,000 rows... (8,740,281 unique ISRCs indexed)
+  Processed 42,000,000 rows... (8,846,961 unique ISRCs indexed)
+  Processed 43,000,000 rows... (8,939,920 unique ISRCs indexed)
+  Processed 44,000,000 rows... (9,038,410 unique ISRCs indexed)
+  Processed 45,000,000 rows... (9,128,732 unique ISRCs indexed)
+  Processed 46,000,000 rows... (9,239,594 unique ISRCs indexed)
+  Processed 47,000,000 rows... (9,348,169 unique ISRCs indexed)
+  Processed 48,000,000 rows... (9,447,326 unique ISRCs indexed)
+  Processed 49,000,000 rows... (9,562,888 unique ISRCs indexed)
+  Processed 50,000,000 rows... (9,674,014 unique ISRCs indexed)
+  Processed 51,000,000 rows... (9,759,173 unique ISRCs indexed)
+  Processed 52,000,000 rows... (9,864,509 unique ISRCs indexed)
+  Processed 53,000,000 rows... (9,948,920 unique ISRCs indexed)
+  Processed 54,000,000 rows... (10,042,210 unique ISRCs indexed)
+  Processed 55,000,000 rows... (10,120,039 unique ISRCs indexed)
+  Processed 56,000,000 rows... (10,202,796 unique ISRCs indexed)
+  Processed 57,000,000 rows... (10,277,378 unique ISRCs indexed)
+  Processed 58,000,000 rows... (10,354,588 unique ISRCs indexed)
+  Processed 59,000,000 rows... (10,418,453 unique ISRCs indexed)
+
+✓ Dataset processing complete!
+  Total rows processed: 59,989,691
+  Unique ISRCs indexed: 10,487,354
+  Valid ISRC codes: 10,487,354
+
+Searching for artist: Linkin Park
+Found: Linkin Park
+Followers: 31,505,811
+Popularity: 89/100
+
+Fetching albums...
+Found 71 albums/singles/compilations
+
+Fetching tracks from albums...
+Processing 1/71: From Zero (Deluxe Edition)
+Processing 2/71: From Zero
+Processing 3/71: From Zero: A Cappellas + Instrumentals
+Processing 4/71: From Zero: A Cappellas
+Processing 5/71: Papercuts: Instrumentals
+Processing 6/71: Papercuts
+Processing 7/71: Meteora 20th Anniversary Edition
+Processing 8/71: Hybrid Theory (20th Anniversary Edition)
+Processing 9/71: One More Light Live
+Processing 10/71: One More Light
+Processing 11/71: The Hunting Party: Acapellas + Instrumentals
+Processing 12/71: The Hunting Party
+Processing 13/71: RECHARGED
+Processing 14/71: LIVING THINGS: Acapellas and Instrumentals
+Processing 15/71: LIVING THINGS
+Processing 16/71: A Thousand Suns Live Around the World
+Processing 17/71: Minutes to Midnight Live Around the World
+Processing 18/71: Meteora Live Around the World
+Processing 19/71: Hybrid Theory Live Around the World
+Processing 20/71: A Thousand Suns
+Processing 21/71: Road to Revolution (Live at Milton Keynes)
+Processing 22/71: Minutes to Midnight (Deluxe Edition)
+Processing 23/71: Minutes to Midnight
+Processing 24/71: Live in Texas
+Processing 25/71: Meteora (Bonus Edition)
+Processing 26/71: Reanimation
+Processing 27/71: Hybrid Theory (Bonus Edition)
+Processing 28/71: Unshatter
+Processing 29/71: Up From the Bottom
+Processing 30/71: Two Faced
+Processing 31/71: Over Each Other
+Processing 32/71: Heavy Is the Crown
+Processing 33/71: The Emptiness Machine
+Processing 34/71: QWERTY (Live in Tokyo, 2006)
+Processing 35/71: Friendly Fire: A Cappella + Instrumental
+Processing 36/71: Friendly Fire
+Processing 37/71: Evolution Of Mike Shinoda
+Processing 38/71: Lost (PLZ Tethered Version)
+Processing 39/71: Lost
+Processing 40/71: One Step Closer (100 gecs Reanimation)
+Processing 41/71: One More Light (Steve Aoki Chester Forever Remix)
+Processing 42/71: Darker Than The Light That Never Bleeds (Chester Forever Steve Aoki Remix)
+Processing 43/71: Heavy (feat. Kiiara)
+Processing 44/71: Final Masquerade
+Processing 45/71: Rebellion (feat. Daron Malakian)
+Processing 46/71: Interview: Mike Shinoda
+Processing 47/71: Wastelands
+Processing 48/71: Until It's Gone
+Processing 49/71: Guilty All the Same (feat. Rakim)
+Processing 50/71: A LIGHT THAT NEVER COMES REMIX
+Processing 51/71: A LIGHT THAT NEVER COMES
+Processing 52/71: Not Alone
+Processing 53/71: iTunes Festival - London, 2011
+Processing 54/71: Iridescent
+Processing 55/71: Waiting for the End
+Processing 56/71: A Thousand Suns: Puerta De Alcalá
+Processing 57/71: The Catalyst
+Processing 58/71: New Divide (Int'l DMD Maxi)
+Processing 59/71: New Divide
+Processing 60/71: Leave out All the Rest
+Processing 61/71: Live from SoHo
+Processing 62/71: Given Up
+Processing 63/71: Shadow of the Day
+Processing 64/71: Shadow Of The Day
+Processing 65/71: Bleed It Out
+Processing 66/71: What I've Done (Int'l 2-Track)
+Processing 67/71: What I've Done
+Processing 68/71: Numb / Encore: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 64/71: Shadow Of The Day
+Processing 65/71: Bleed It Out
+Processing 66/71: What I've Done (Int'l 2-Track)
+Processing 67/71: What I've Done
+Processing 68/71: Numb / Encore: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 65/71: Bleed It Out
+Processing 66/71: What I've Done (Int'l 2-Track)
+Processing 67/71: What I've Done
+Processing 68/71: Numb / Encore: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 66/71: What I've Done (Int'l 2-Track)
+Processing 67/71: What I've Done
+Processing 68/71: Numb / Encore: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 67/71: What I've Done
+Processing 68/71: Numb / Encore: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 68/71: Numb / Encore: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 69/71: Dirt Off Your Shoulde r/ Lying From You: MTV Ultimate Mash-Ups Presents Collision Course
+Processing 70/71: Collision Course
+Processing 70/71: Collision Course
+Processing 71/71: LOST DEMOS
+
+Fetching ISRC codes for 665 tracks...
+
+Cross-referencing with unclaimed works dataset...
+Found 69 matches in unclaimed works dataset
+
+Fetching ISRC codes for 665 tracks...
+
+Cross-referencing with unclaimed works dataset...
+Found 69 matches in unclaimed works dataset
+Fetching ISRC codes for 665 tracks...
+
+Cross-referencing with unclaimed works dataset...
+Found 69 matches in unclaimed works dataset
+Cross-referencing with unclaimed works dataset...
+Found 69 matches in unclaimed works dataset
+Found 69 matches in unclaimed works dataset
+
+Creating Excel report: music_rights_analysis.xlsx
+Excel report created successfully!
+JSON data saved to results.json
+
+============================================================
+
+============================================================
+============================================================
+ANALYSIS COMPLETE!
+============================================================
+
+Files created:
+  - music_rights_analysis.xlsx (Excel report with 3 sheets)
+  - results.json (JSON data for dashboard)
+
+Next step: Open 'dashboard.html' in your browser to view results

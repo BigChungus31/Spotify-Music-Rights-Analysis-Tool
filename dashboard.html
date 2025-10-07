@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Rights Analysis Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #121212;
+            color: #ffffff;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        header {
+            text-align: left;
+            padding: 32px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #282828;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            color: #1DB954;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+        
+        .subtitle {
+            color: #b3b3b3;
+            font-size: 1em;
+            font-weight: 400;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: #181818;
+            padding: 24px;
+            border-radius: 8px;
+            border: none;
+            transition: background 0.2s;
+        }
+        
+        .stat-card:hover {
+            background: #282828;
+        }
+        
+        .stat-label {
+            color: #b3b3b3;
+            font-size: 0.875em;
+            margin-bottom: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1DB954;
+        }
+        
+        .artist-info {
+            background: #181818;
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+        
+        .artist-info h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #282828;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            color: #b3b3b3;
+            font-size: 0.875em;
+        }
+        
+        .info-value {
+            color: #ffffff;
+            font-weight: 500;
+        }
+        
+        .section {
+            background: #181818;
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+        
+        .section h2 {
+            margin-bottom: 24px;
+            color: #ffffff;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+        
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        input, select {
+            padding: 12px 16px;
+            background: #121212;
+            border: 1px solid #282828;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 0.875em;
+            flex: 1;
+            min-width: 200px;
+            transition: border-color 0.2s;
+        }
+        
+        input::placeholder {
+            color: #6a6a6a;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1DB954;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875em;
+        }
+        
+        th, td {
+            padding: 16px 12px;
+            text-align: left;
+            border-bottom: 1px solid #282828;
+        }
+        
+        th {
+            background: transparent;
+            color: #b3b3b3;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75em;
+            letter-spacing: 0.1em;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .table-container {
+            max-height: 600px;
+            overflow-y: auto;
+            border-radius: 4px;
+        }
+        
+        .table-container::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        .table-container::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        
+        .table-container::-webkit-scrollbar-thumb {
+            background: #282828;
+            border-radius: 6px;
+        }
+        
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #3e3e3e;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.75em;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        
+        .badge-album {
+            background: rgba(29, 185, 84, 0.15);
+            color: #1DB954;
+        }
+        
+        .badge-single {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        
+        .badge-compilation {
+            background: rgba(29, 185, 84, 0.1);
+            color: #1ed760;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+            color: #b3b3b3;
+            font-size: 1em;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .spinner {
+            border: 3px solid #282828;
+            border-top: 3px solid #1DB954;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .match-highlight {
+            background: rgba(29, 185, 84, 0.08);
+            border-left: 3px solid #1DB954;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #282828;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: #b3b3b3;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875em;
+            font-weight: 600;
+        }
+        
+        .tab-btn:hover {
+            color: #ffffff;
+        }
+        
+        .tab-btn.active {
+            color: #ffffff;
+            border-bottom-color: #1DB954;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        code {
+            background: #121212;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #1DB954;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Music Rights Analysis</h1>
+            <p class="subtitle">Spotify Catalog vs Unclaimed Musical Works</p>
+        </header>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p style="color: #b3b3b3;">Loading analysis data...</p>
+        </div>
+
+        <div id="content" style="display: none;">
+            <div class="artist-info" id="artistInfo"></div>
+
+            <div class="stats-grid" id="statsGrid"></div>
+
+            <div class="section">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="switchTab('catalog')">Full Catalog</button>
+                    <button class="tab-btn" onclick="switchTab('matches')">Unclaimed Matches</button>
+                </div>
+
+                <div id="catalog-tab" class="tab-content active">
+                    <h2>Artist Catalog</h2>
+                    <div class="filter-bar">
+                        <input type="text" id="searchCatalog" placeholder="Search by track or album name...">
+                        <select id="filterAlbumType">
+                            <option value="">All Types</option>
+                            <option value="album">Albums</option>
+                            <option value="single">Singles</option>
+                            <option value="compilation">Compilations</option>
+                        </select>
+                    </div>
+                    <div class="table-container">
+                        <table id="catalogTable">
+                            <thead>
+                                <tr>
+                                    <th>Track Name</th>
+                                    <th>Album</th>
+                                    <th>Type</th>
+                                    <th>Release Date</th>
+                                    <th>ISRC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="catalogBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="matches-tab" class="tab-content">
+                    <h2>Unclaimed Works Matches</h2>
+                    <div class="filter-bar">
+                        <input type="text" id="searchMatches" placeholder="Search matches...">
+                    </div>
+                    <div class="table-container">
+                        <table id="matchesTable">
+                            <thead>
+                                <tr>
+                                    <th>Track Name</th>
+                                    <th>Album</th>
+                                    <th>ISRC</th>
+                                    <th>Release Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="matchesBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let data = null;
+
+        // Load data from JSON file
+        async function loadData() {
+            try {
+                const response = await fetch('results.json');
+                data = await response.json();
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                
+                renderArtistInfo();
+                renderStats();
+                renderCatalog(data.catalog);
+                renderMatches(data.matches);
+                setupFilters();
+            } catch (error) {
+                document.getElementById('loading').innerHTML = `
+                    <div class="no-data">
+                        <h2 style="color: #ffffff; margin-bottom: 16px;">No Data Found</h2>
+                        <p>Please run <code style="background: #282828; color: #1DB954;">python main.py</code> first to generate the analysis data.</p>
+                        <p style="margin-top: 16px; color: #6a6a6a; font-size: 0.875em;">Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderArtistInfo() {
+            const artist = data.artist;
+            const html = `
+                <h2>${artist.name}</h2>
+                <div class="info-row">
+                    <span class="info-label">Spotify Followers</span>
+                    <span class="info-value">${artist.followers.toLocaleString()}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Popularity Score</span>
+                    <span class="info-value">${artist.popularity}/100</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Genres</span>
+                    <span class="info-value">${artist.genres.join(', ') || 'N/A'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Analysis Date</span>
+                    <span class="info-value">${new Date(data.generated_at).toLocaleString()}</span>
+                </div>
+            `;
+            document.getElementById('artistInfo').innerHTML = html;
+        }
+
+        function renderStats() {
+            const stats = data.stats;
+            const html = `
+                <div class="stat-card">
+                    <div class="stat-label">Total Tracks</div>
+                    <div class="stat-value">${stats.total_tracks}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Tracks with ISRC</div>
+                    <div class="stat-value">${stats.tracks_with_isrc}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Unclaimed Matches</div>
+                    <div class="stat-value">${stats.unclaimed_matches}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Match Rate</div>
+                    <div class="stat-value">${stats.match_rate.toFixed(2)}%</div>
+                </div>
+            `;
+            document.getElementById('statsGrid').innerHTML = html;
+        }
+
+        function renderCatalog(catalog) {
+            const tbody = document.getElementById('catalogBody');
+            tbody.innerHTML = catalog.map(track => `
+                <tr>
+                    <td><strong>${track.track_name}</strong></td>
+                    <td>${track.album_name}</td>
+                    <td><span class="badge badge-${track.album_type}">${track.album_type}</span></td>
+                    <td>${track.release_date}</td>
+                    <td><code>${track.isrc}</code></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderMatches(matches) {
+            const tbody = document.getElementById('matchesBody');
+            
+            if (matches.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 48px; color: #b3b3b3;">
+                            <strong style="color: #ffffff; display: block; margin-bottom: 8px;">No matches found</strong>
+                            None of this artist's tracks appear in the unclaimed works dataset.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = matches.map(track => `
+                <tr class="match-highlight">
+                    <td><strong>${track.track_name}</strong></td>
+                    <td>${track.album_name}</td>
+                    <td><code>${track.isrc}</code></td>
+                    <td>${track.release_date}</td>
+                </tr>
+            `).join('');
+        }
+
+        function setupFilters() {
+            // Catalog search
+            document.getElementById('searchCatalog').addEventListener('input', (e) => {
+                filterCatalog(e.target.value, document.getElementById('filterAlbumType').value);
+            });
+
+            // Album type filter
+            document.getElementById('filterAlbumType').addEventListener('change', (e) => {
+                filterCatalog(document.getElementById('searchCatalog').value, e.target.value);
+            });
+
+            // Matches search
+            document.getElementById('searchMatches').addEventListener('input', (e) => {
+                filterMatches(e.target.value);
+            });
+        }
+
+        function filterCatalog(searchTerm, albumType) {
+            const filtered = data.catalog.filter(track => {
+                const matchesSearch = searchTerm === '' || 
+                    track.track_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    track.album_name.toLowerCase().includes(searchTerm.toLowerCase());
+                
+                const matchesType = albumType === '' || track.album_type === albumType;
+                
+                return matchesSearch && matchesType;
+            });
+            
+            renderCatalog(filtered);
+        }
+
+        function filterMatches(searchTerm) {
+            const filtered = data.matches.filter(track => {
+                return searchTerm === '' ||
+                    track.track_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    track.album_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    track.isrc.toLowerCase().includes(searchTerm.toLowerCase());
+            });
+            
+            renderMatches(filtered);
+        }
+
+        function switchTab(tab) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${tab}-tab`).classList.add('active');
+        }
+
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>

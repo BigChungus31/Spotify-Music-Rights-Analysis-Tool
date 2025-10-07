@@ -1,0 +1,127 @@
+═══════════════════════════════════════════════════════════
+  SPOTIFY MUSIC RIGHTS ANALYZER - QUICK START GUIDE
+═══════════════════════════════════════════════════════════
+
+STEP 1: ORGANIZE YOUR FILES
+─────────────────────────────────────────────────────────
+
+Create a folder for this project and place these files inside:
+
+  ✓ main.py
+  ✓ requirements.txt
+  ✓ dashboard.html
+  ✓ README.md
+  ✓ unclaimedmusicalworkrightshares.tsv (download from Google Drive)
+
+
+STEP 2: INSTALL DEPENDENCIES
+─────────────────────────────────────────────────────────
+
+Open terminal/command prompt in your project folder and run:
+
+  pip install -r requirements.txt
+
+This installs: requests, pandas, openpyxl
+
+
+STEP 3: RUN THE SCRIPT
+─────────────────────────────────────────────────────────
+
+In the terminal, run:
+
+  python main.py
+
+Wait 2-5 minutes for the script to complete.
+
+You should see:
+  • Loading dataset...
+  • Searching for artist...
+  • Fetching albums...
+  • Cross-referencing...
+  • Excel report created!
+
+
+STEP 4: VIEW RESULTS
+─────────────────────────────────────────────────────────
+
+Two files will be created:
+
+1. music_rights_analysis.xlsx
+   → Open in Excel/Google Sheets
+   → Contains 3 sheets with full analysis
+
+2. results.json
+   → Used by dashboard
+   → Don't open directly
+
+
+STEP 5: OPEN THE DASHBOARD
+─────────────────────────────────────────────────────────
+
+Double-click: dashboard.html
+
+It will open in your default browser showing:
+  • Artist statistics
+  • Full catalog (searchable/filterable)
+  • Unclaimed matches
+  • Visual summaries
+
+
+CHANGING THE ARTIST
+─────────────────────────────────────────────────────────
+
+1. Open main.py in any text editor
+2. Find line 15: ARTIST_NAME = 'Linkin Park'
+3. Change to: ARTIST_NAME = 'Your Artist Name'
+4. Save and run: python main.py again
+
+
+TROUBLESHOOTING
+─────────────────────────────────────────────────────────
+
+Problem: "Dataset file not found"
+→ Make sure unclaimedmusicalworkrightshares.tsv is in the folder
+
+Problem: "Module not found"
+→ Run: pip install -r requirements.txt
+
+Problem: Dashboard shows "No Data Found"
+→ Run python main.py first
+
+Problem: "Artist not found"
+→ Check spelling or try a different artist
+
+
+WHAT SUCCESS LOOKS LIKE
+─────────────────────────────────────────────────────────
+
+Terminal output should end with:
+
+  ════════════════════════════════════════════════════
+  ANALYSIS COMPLETE!
+  ════════════════════════════════════════════════════
+
+  Files created:
+    - music_rights_analysis.xlsx (Excel report)
+    - results.json (JSON data for dashboard)
+
+  Next step: Open 'dashboard.html' in your browser
+  ════════════════════════════════════════════════════
+
+
+ASSIGNMENT DELIVERABLES
+─────────────────────────────────────────────────────────
+
+Submit these files:
+
+  ✓ main.py (Python script)
+  ✓ dashboard.html (UI)
+  ✓ requirements.txt (dependencies)
+  ✓ README.md (documentation)
+  ✓ music_rights_analysis.xlsx (generated output)
+  ✓ Screenshot of dashboard (optional)
+
+
+═══════════════════════════════════════════════════════════
+Need help? Check README.md for detailed documentation
+═══════════════════════════════════════════════════════════
